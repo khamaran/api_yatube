@@ -27,12 +27,12 @@ class PostViewSet(viewsets.ModelViewSet):
         super(PostViewSet, self).perform_update(serializer)
 
     def perform_destroy(self, serializer):
-        if serializer.instance.author != self.request.user:
+        if serializer.author != self.request.user:
             raise PermissionDenied('Удаление чужого контента запрещено!')
-        super(PostViewSet, self).perform_destroy(serializer)
+        super().perform_destroy(serializer)
 
 
-class GroupViewSet(viewsets.ModelViewSet):
+class GroupViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     permission_classes = [

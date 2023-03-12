@@ -6,10 +6,11 @@ from django.urls import include, path
 from .views import PostViewSet, GroupViewSet, CommentViewSet
 
 router = routers.DefaultRouter()
-router.register(r'post', PostViewSet, basename='posts')
-router.register(r'group', GroupViewSet, basename='group')
-router.register(r'posts/(?P<post_id>\d+)/comments/',
-                CommentViewSet, basename='comment')
+router.register(r'posts', PostViewSet, basename='posts')
+router.register(r'groups', GroupViewSet, basename='groups')
+
+router.register(r'posts/(?P<post_id>\d+)/comments',
+                CommentViewSet, basename='comments')
 
 urlpatterns = [
     path('v1/', include(router.urls)),
